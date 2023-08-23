@@ -57,6 +57,6 @@ jobs:
           subject: "File Transfer Successful"
           #file_name: ${{ env.LOCAL_FILE }}
           #file_path: ${{ env.REMOTE_DIR }}
-          body: "The file transfer to the Synology NAS was successful. File details follow:\nLocal File: $LOCAL_FILE\nRemote Directory: $REMOTE_DIR"
+          body: "The file transfer to the Synology NAS was successful. File details follow:\nLocal File: $LOCAL_FILE\nRemote Directory: {{REMOTE_DIR}}"
           to: kanagavel@lcscon.com  # Replace with the recipient's email address   
     
