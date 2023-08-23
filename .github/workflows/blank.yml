@@ -46,3 +46,13 @@ jobs:
           REMOTE_DIR: "/"  # Replace with the desired destination directory on your NAS (without trailing slash)
         run: |
           lftp -c "open -u $FTP_USER,$FTP_PASSWORD $FTP_SERVER; put $LOCAL_FILE -o $REMOTE_DIR/$(basename $LOCAL_FILE); bye"
+      - name: Send email notification
+        uses: dawidd6/action-send-mail@v2
+        with:
+          server_address: smtp.example.com  # Replace with your SMTP server address
+          server_port: 587
+          username: ${{ secrets.EMAIL_USERNAME }}
+          password: ${{ secrets.EMAIL_PASSWORD }}
+          subject: "File Transfer Successful"
+          body: "The file transfer to the Synology NAS was successful."
+          to: kanagavel@lcscon.com  # Replace with the recipient's email address     
