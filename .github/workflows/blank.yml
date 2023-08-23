@@ -47,12 +47,6 @@ jobs:
         run: |
           lftp -c "open -u $FTP_USER,$FTP_PASSWORD $FTP_SERVER; put $LOCAL_FILE -o $REMOTE_DIR/$(basename $LOCAL_FILE); bye"
       - name: Send email notification
-        run: |
-          echo "The file transfer to the Synology NAS was successful. File details follow:" > email_body.txt
-          echo "Local File: $LOCAL_FILE" >> email_body.txt
-          echo "Remote Directory: $REMOTE_DIR" >> email_body.txt
-          cat email_body.txt
-      - name: email notification
         uses: dawidd6/action-send-mail@v2
         with:
           server_address: smtp.office365.com  # Replace with your SMTP server address
@@ -63,6 +57,6 @@ jobs:
           subject: "File Transfer Successful"
           #file_name: ${{ env.LOCAL_FILE }}
           #file_path: ${{ env.REMOTE_DIR }}
-          body: "$(cat email_body.txt)"
+          body: "The file transfer to the Synology NAS was successful. File details follow:\nLocal File: $LOCAL_FILE\nRemote Directory: $REMOTE_DIR"
           to: kanagavel@lcscon.com  # Replace with the recipient's email address   
     
