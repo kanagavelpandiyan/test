@@ -51,8 +51,10 @@ jobs:
         with:
           server_address: smtp.office365.com  # Replace with your SMTP server address
           server_port: 587
+          from: kanagavel@lcscon.com
           username: ${{ secrets.EMAIL_USERNAME }}
           password: ${{ secrets.EMAIL_PASSWORD }}
           subject: "File Transfer Successful"
           body: "The file transfer to the Synology NAS was successful."
-          to: kanagavel@lcscon.com  # Replace with the recipient's email address     
+          to: kanagavel@lcscon.com  # Replace with the recipient's email address   
+          cc: karthi@lcscon.com
