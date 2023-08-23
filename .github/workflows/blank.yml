@@ -57,7 +57,7 @@ jobs:
           subject: "File Transfer Successful"
           body: | 
               The file transfer to the Synology NAS was successful. File details follows
-                Local File: $(basename "$LOCAL_FILE")
-                Remote Directory: $(basename "$REMOTE_DIR")
+                Local File: ${{ env.LOCAL_FILE }}
+                Remote Directory:  ${{ env.REMOTE_DIR }}
           to: kanagavel@lcscon.com  # Replace with the recipient's email address   
           cc: karthi@lcscon.com
