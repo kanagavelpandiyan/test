@@ -61,9 +61,6 @@ jobs:
           username: ${{ secrets.EMAIL_USERNAME }}
           password: ${{ secrets.EMAIL_PASSWORD }}
           subject: "File Transfer Successful"
-          body: |
-            The file transfer to the Synology NAS was successful. File details follow:
-            Local File: ${{ env.LOCAL_FILE }}
-            Remote Directory: "$(cat email_body.txt)"
+          body: "$(cat email_body.txt)"
           to: kanagavel@lcscon.com  # Replace with the recipient's email address   
     
