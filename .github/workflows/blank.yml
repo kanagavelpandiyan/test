@@ -46,6 +46,12 @@ jobs:
           #REMOTE_DIR: "/"  # Replace with the desired destination directory on your NAS (without trailing slash)
         run: |
           lftp -c "open -u $FTP_USER,$FTP_PASSWORD $FTP_SERVER; put $LOCAL_FILE -o $REMOTE_DIR/$(basename $LOCAL_FILE); bye"
+      - name: create email body
+        run: |
+          echo "The file transfer to the Synology NAS was successful. File details follow:" > email_body.txt
+          echo "Local File: $LOCAL_FILE" >> email_body.txt
+          echo "Remote Directory: $REMOTE_DIR" >> email_body.txt
+          cat email_body.txt
       - name: Send email notification
         uses: dawidd6/action-send-mail@v2
         with:
@@ -58,6 +64,6 @@ jobs:
           body: |
             The file transfer to the Synology NAS was successful. File details follow:
             Local File: ${{ env.LOCAL_FILE }}
-            Remote Directory: print(str( REMOTE_DIR ))
+            Remote Directory: "$(cat email_body.txt)"
           to: kanagavel@lcscon.com  # Replace with the recipient's email address   
     
