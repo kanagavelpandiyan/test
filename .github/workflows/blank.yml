@@ -43,7 +43,7 @@ jobs:
           FTP_USER: ${{ secrets.NAS_FTP_USER }}
           FTP_PASSWORD: ${{ secrets.NAS_FTP_PASSWORD }}
           LOCAL_FILE: "./README.md"  # Replace with the relative path to your single file in the repository
-          REMOTE_DIR: "/"  # Replace with the desired destination directory on your NAS (without trailing slash)
+          #REMOTE_DIR: "/"  # Replace with the desired destination directory on your NAS (without trailing slash)
         run: |
           lftp -c "open -u $FTP_USER,$FTP_PASSWORD $FTP_SERVER; put $LOCAL_FILE -o $REMOTE_DIR/$(basename $LOCAL_FILE); bye"
       - name: Send email notification
