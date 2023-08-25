@@ -58,6 +58,6 @@ jobs:
           body: |
             The file transfer to the Synology NAS was successful. File details follow:
             Local File: ${{ env.LOCAL_FILE }}
-            Remote Directory: str( REMOTE_DIR )
+            Remote Directory: print(str( REMOTE_DIR ))
           to: kanagavel@lcscon.com  # Replace with the recipient's email address   
     
