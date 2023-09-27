@@ -61,4 +61,4 @@ jobs:
          The file upload to the S3 bucket was successful. File details follow:
            File: ${{env.LOCAL_FILE}}
            S3 Bucket: ${{env.BUCKET_NAME}}
-           File Upload Status: ${{env.$UPLOAD_SUCCESS}}
+           File Upload Status:
