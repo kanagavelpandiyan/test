@@ -27,7 +27,8 @@ jobs:
         LOCAL_FILE: "./README.md"  # Replace with the relative path to your single file in the repository
       run: |
         aws s3 cp $LOCAL_FILE s3://$BUCKET_NAME/
-
+        # Set UPLOAD_SUCCESS to 'true' if the upload was successful
+        echo "UPLOAD_SUCCESS=true" >> $GITHUB_ENV
     - name: Send email notification
       run: |
         echo "The file upload to the S3 bucket was successful. File details follow:" > email_body.txt
@@ -37,13 +38,14 @@ jobs:
       env:
         LOCAL_FILE: ${{ env.LOCAL_FILE }}
         BUCKET_NAME: ${{ env.BUCKET_NAME }}
-        UPLOAD_SUCCESS: "true"
+        #UPLOAD_SUCCESS: "true"
     - name: Debug Environment Variables
       run: |
         echo "UPLOAD_SUCCESS: $UPLOAD_SUCCESS"
+        
       env:
         UPLOAD_SUCCESS: ${{ env.UPLOAD_SUCCESS }}
-
+      
     - name: Email notification
       if: env.UPLOAD_SUCCESS == 'true'
       uses: dawidd6/action-send-mail@v2
