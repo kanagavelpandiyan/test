@@ -38,6 +38,11 @@ jobs:
         LOCAL_FILE: ${{ env.LOCAL_FILE }}
         BUCKET_NAME: ${{ env.BUCKET_NAME }}
         UPLOAD_SUCCESS: "true"
+    - name: Debug Environment Variables
+      run: |
+        echo "UPLOAD_SUCCESS: $UPLOAD_SUCCESS"
+      env:
+        UPLOAD_SUCCESS: ${{ env.UPLOAD_SUCCESS }}
 
     - name: Email notification
       if: env.UPLOAD_SUCCESS == 'true'
