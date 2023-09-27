@@ -57,4 +57,7 @@ jobs:
         from: admin@lcscon.com  # Replace with the sender's email address
         to: kanagavel@lcscon.com  # Replace with the recipient's email address
         subject: "File Upload to S3 Successful"
-        body: "$(cat email_body.txt)"
+        body: |
+         The file upload to the S3 bucket was successful. File details follow:
+      
+         $(cat email_body.txt)
