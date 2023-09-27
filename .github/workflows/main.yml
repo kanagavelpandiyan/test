@@ -29,8 +29,7 @@ jobs:
         aws s3 cp $LOCAL_FILE s3://$BUCKET_NAME/
         # Set UPLOAD_SUCCESS to 'true' if the upload was successful
         echo "UPLOAD_SUCCESS=true" >> $GITHUB_ENV
-        echo "::set-output name=local_file::${{ env.LOCAL_FILE }}"
-        id: set-local-file
+        echo "LOCAL_FILE=${{ env.LOCAL_FILE }}" >> $GITHUB_ENV
     - name: Send email notification
       run: |
         echo "The file upload to the S3 bucket was successful. File details follow:" > email_body.txt
@@ -40,7 +39,7 @@ jobs:
       env:
         LOCAL_FILE: ${{ env.LOCAL_FILE }}
         BUCKET_NAME: ${{ env.BUCKET_NAME }}
-        #UPLOAD_SUCCESS: "true"
+        UPLOAD_SUCCESS: "true"
     - name: Debug Environment Variables
       run: |
         echo "UPLOAD_SUCCESS: $UPLOAD_SUCCESS"
@@ -61,4 +60,4 @@ jobs:
         subject: "File Upload to S3 Successful"
         body: |
          The file upload to the S3 bucket was successful. File details follow:
-         echo "The value of LOCAL_FILE is: ${{ steps.set-local-file.outputs.local_file }}"
+          - File: ${{ env.LOCAL_FILE }}
