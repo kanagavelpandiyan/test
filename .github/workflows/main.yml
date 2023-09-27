@@ -30,6 +30,8 @@ jobs:
         # Set UPLOAD_SUCCESS to 'true' if the upload was successful
         echo "UPLOAD_SUCCESS=true" >> $GITHUB_ENV
         echo "LOCAL_FILE=${{ env.LOCAL_FILE }}" >> $GITHUB_ENV
+        echo "BUCKET_NAME=${{ env.BUCKET_NAME }}" >> $GITHUB_ENV
+        
     - name: Send email notification
       run: |
         echo "The file upload to the S3 bucket was successful. File details follow:" > email_body.txt
@@ -61,3 +63,5 @@ jobs:
         body: |
          The file upload to the S3 bucket was successful. File details follow:
           - File: ${{ env.LOCAL_FILE }}
+          - S3 Bucket: ${{ env.BUCKET_NAME }}
+          - File Upload Status: ${{ env.UPLOAD_SUCCESS }}
