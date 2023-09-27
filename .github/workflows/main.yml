@@ -24,7 +24,7 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         AWS_DEFAULT_REGION: ap-south-1  # Replace with your desired AWS region
         BUCKET_NAME: lcs-product-release
-        LOCAL_FILE: "./test/README.mdt"  # Replace with the relative path to your single file in the repository
+        LOCAL_FILE: "./README.md"  # Replace with the relative path to your single file in the repository
       run: |
         aws s3 cp $LOCAL_FILE s3://$BUCKET_NAME/
 
