@@ -59,5 +59,7 @@ jobs:
         subject: "File Upload to S3 Successful"
         body: |
          The file upload to the S3 bucket was successful. File details follow:
-      
-         $(cat email_body.txt)
+            echo "The file upload to the S3 bucket was successful. File details follow:" > email_body.txt
+            echo "File: $LOCAL_FILE" >> email_body.txt
+            echo "S3 Bucket: $BUCKET_NAME" >> email_body.txt
+            echo "File Upload Status: $UPLOAD_SUCCESS"
