@@ -35,11 +35,11 @@ jobs:
         echo "S3_OBJECT_KEY=${{ env.S3_OBJECT_KEY }}" >> $GITHUB_ENV
         
     - name: Send email notification
-      run: |
-        echo "The file upload to the S3 bucket was successful. File details follow:" > email_body.txt
-        echo "File: $LOCAL_FILE" >> email_body.txt
-        echo "S3 Bucket: $BUCKET_NAME" >> email_body.txt
-        echo "File Upload Status: $UPLOAD_SUCCESS" >> email_body.txt
+      #run: |
+        #echo "The file upload to the S3 bucket was successful. File details follow:" > email_body.txt
+        #echo "File: $LOCAL_FILE" >> email_body.txt
+        #echo "S3 Bucket: $BUCKET_NAME" >> email_body.txt
+        #echo "File Upload Status: $UPLOAD_SUCCESS" >> email_body.txt
       env:
         LOCAL_FILE: ${{ env.LOCAL_FILE }}
         BUCKET_NAME: ${{ env.BUCKET_NAME }}
