@@ -25,12 +25,14 @@ jobs:
         AWS_DEFAULT_REGION: ap-south-1  # Replace with your desired AWS region
         BUCKET_NAME: lcs-product-release
         LOCAL_FILE: "./README.md"  # Replace with the relative path to your single file in the repository
+        S3_OBJECT_KEY: "cheetah/embsw/dumper/"  # Specify the desired S3 object key
       run: |
-        aws s3 cp $LOCAL_FILE s3://$BUCKET_NAME/
+        aws s3 cp $LOCAL_FILE s3://$BUCKET_NAME/$S3_OBJECT_KEY
         # Set UPLOAD_SUCCESS to 'true' if the upload was successful
         echo "UPLOAD_SUCCESS=true" >> $GITHUB_ENV
         echo "LOCAL_FILE=${{ env.LOCAL_FILE }}" >> $GITHUB_ENV
         echo "BUCKET_NAME=${{ env.BUCKET_NAME }}" >> $GITHUB_ENV
+        echo "S3_OBJECT_KEY=${{ env.S3_OBJECT_KEY }}" >> $GITHUB_ENV
         
     - name: Send email notification
       run: |
@@ -63,5 +65,5 @@ jobs:
         body: |
          The file upload to the S3 bucket was successful. File details follow:
           - File: ${{ env.LOCAL_FILE }}
-          - S3 Bucket: ${{ env.BUCKET_NAME }}
+          - S3 Bucket: ${{ env.BUCKET_NAME }} \ ${{env.S3_OBJECT_KEY}}
           - File Upload Status: ${{ env.UPLOAD_SUCCESS }}
