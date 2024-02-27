@@ -23,9 +23,9 @@ jobs:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         AWS_DEFAULT_REGION: ap-south-1  # Replace with your desired AWS region
-        BUCKET_NAME: lcs-product-release
+        BUCKET_NAME: lcs-iso-release
         LOCAL_FILE: "./README.md"  # Replace with the relative path to your single file in the repository
-        S3_OBJECT_KEY: "cheetah/embsw/dumper/"  # Specify the desired S3 object key
+        S3_OBJECT_KEY: "wc/"  # Specify the desired S3 object key
       run: |
         aws s3 cp $LOCAL_FILE s3://$BUCKET_NAME/$S3_OBJECT_KEY
         # Set UPLOAD_SUCCESS to 'true' if the upload was successful
@@ -64,3 +64,7 @@ jobs:
           - File: ${{ env.LOCAL_FILE }}
           - S3 Bucket: ${{ env.BUCKET_NAME }}/${{env.S3_OBJECT_KEY}}
           - File Upload Status: ${{ env.UPLOAD_SUCCESS }}
+          Release notes:
+          Factory Tare protocol added for X and Y:
+          Factory Tare Command for X ----> LCSAT+202
+          Factory Tare Command for Y ----> LCSAT+203
