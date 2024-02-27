@@ -58,6 +58,7 @@ jobs:
         password: ${{ secrets.EMAIL_PASSWORD }}
         from: admin@lcscon.com  # Replace with the sender's email address
         to: kanagavel@lcscon.com  # Replace with the recipient's email address
+        attachments: ${{ github.workspace }}/README.md
         subject: "File Upload to S3 Successful"
         body: |
          The file upload to the S3 bucket was successful. File details follow:
@@ -67,7 +68,5 @@ jobs:
           Release notes:
           Factory Tare protocol added for X and Y:
           Factory Tare Command for X ----> LCSAT+202
-          Factory Tare Command for Y ----> LCSAT+203
-      env:
-        UPLOAD_SUCCESS: ${{ env.UPLOAD_SUCCESS }}
-        attachments: ${{ github.workspace }}/README.md
+          Factory Tare Command for Y ----> LCSAT+203  
+        
