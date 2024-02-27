@@ -68,3 +68,7 @@ jobs:
           Factory Tare protocol added for X and Y:
           Factory Tare Command for X ----> LCSAT+202
           Factory Tare Command for Y ----> LCSAT+203
+
+          with:
+          attachments: |
+          ./README.md
